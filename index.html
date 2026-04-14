@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="翔安区新圩第一中心幼儿园 - 闽南红砖古厝里的童趣园">
+  <title>翔安区新圩第一中心幼儿园 · 欢迎您</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fff8f0;
+      font-family: -apple-system, "PingFang SC", "Noto Serif SC", "Helvetica Neue", "SF Pro Text", system-ui, serif;
+      color: #2b241c;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 闽南红砖主色调 */
+    :root {
+      --brick-red: #bc5a3c;
+      --brick-deep: #9c3e24;
+      --golden: #d9a13b;
+      --clay-bg: #f7ede2;
+      --paper: #ffffff;
+      --text-dark: #2c241a;
+      --brick-light: #e3c9b5;
+    }
+
+    /* 红砖墙背景纹理 (细腻) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(188, 90, 60, 0.03) 0px, rgba(188, 90, 60, 0.03) 2px, transparent 2px, transparent 12px),
+        repeating-linear-gradient(135deg, rgba(188, 90, 60, 0.02) 0px, rgba(188, 90, 60, 0.02) 1px, transparent 1px, transparent 10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 32px 88px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 燕尾脊装饰线条 (顶部) */
+    .swallow-tail {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .swallow-tail span {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brick-red), var(--golden));
+      border-radius: 3px;
+    }
+    .swallow-tail span:first-child,
+    .swallow-tail span:last-child {
+      width: 72px;
+    }
+
+    /* 头部区域 */
+    .hero {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    /* logo 放大，无多余边框 */
+    .logo-wrapper {
+      display: inline-flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .logo {
+      width: 160px;
+      height: 160px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.05));
+    }
+    .logo .fallback-icon {
+      font-size: 96px;
+      color: var(--brick-red);
+    }
+
+    h1 {
+      font-size: 52px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-dark);
+      margin-bottom: 28px;
+      line-height: 1.2;
+    }
+
+    /* 办园理念 - 简洁大气 */
+    .philosophy-statement {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--brick-deep);
+      display: inline-block;
+      padding: 10px 36px;
+      background: rgba(217, 161, 59, 0.1);
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+      letter-spacing: 2px;
+      border: 1px solid rgba(188, 90, 60, 0.2);
+    }
+
+    /* 视频卡片 - 红砖古厝风格 */
+    .media-section {
+      margin-bottom: 80px;
+    }
+
+    .video-card {
+      background: var(--paper);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s;
+      border: 1px solid #f0dfce;
+    }
+    .video-card:hover {
+      box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.12);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      background: #e2d2be;
+      cursor: pointer;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s;
+      border-radius: 32px;
+    }
+    .play-overlay:hover {
+      background: rgba(0, 0, 0, 0.18);
+    }
+    .play-btn {
+      width: 88px;
+      height: 88px;
+      background: rgba(255, 255, 245, 0.96);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .play-btn::after {
+      content: "▶";
+      font-size: 38px;
+      color: var(--brick-red);
+      margin-left: 6px;
+    }
+    .play-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .loading-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      border: 4px solid rgba(188, 90, 60, 0.2);
+      border-top: 4px solid var(--brick-red);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      z-index: 3;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* 三卡片 - 融入闽南红砖、古厝元素 */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      margin: 64px 0 56px;
+    }
+
+    .card {
+      background: var(--paper);
+      border-radius: 28px;
+      padding: 36px 28px;
+      transition: all 0.3s ease;
+      border: 1px solid #e8d6c4;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+      position: relative;
+      overflow: hidden;
+    }
+    /* 红砖墙纹理背景 (卡片内) */
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(45deg, rgba(188, 90, 60, 0.02) 0px, rgba(188, 90, 60, 0.02) 1px, transparent 1px, transparent 8px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #dabb9a;
+      box-shadow: 0 24px 36px -16px rgba(100, 60, 30, 0.15);
+    }
+
+    /* 古厝窗花装饰 (左上角) */
+    .card::before {
+      content: "❦";
+      font-size: 32px;
+      color: rgba(188, 90, 60, 0.1);
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-family: serif;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 闽南元素图标区 */
+    .card-icon {
+      position: relative;
+      z-index: 2;
+      font-size: 56px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--brick-red);
+    }
+    /* 为图标增加红砖底座效果 */
+    .card-icon .icon-badge {
+      background: rgba(188, 90, 60, 0.1);
+      width: 80px;
+      height: 80px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      transition: background 0.2s;
+      border: 1px solid rgba(217, 161, 59, 0.3);
+    }
+    .card:hover .icon-badge {
+      background: rgba(188, 90, 60, 0.18);
+    }
+
+    .card h3 {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--brick-deep);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card p {
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--text-dark);
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 燕尾脊小点缀 (卡片底部) */
+    .card-footer-line {
+      margin-top: 24px;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--golden), transparent);
+      border-radius: 2px;
+    }
+
+    /* 闽南底部装饰 */
+    .minnan-footer-decoration {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0 28px;
+    }
+    .minnan-footer-decoration span {
+      font-size: 22px;
+      color: var(--golden);
+      opacity: 0.6;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #b29074;
+      border-top: 1px solid #eedbcb;
+      padding-top: 32px;
+      margin-top: 16px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 960px) {
+      .container {
+        padding: 40px 24px 64px;
+      }
+      h1 {
+        font-size: 42px;
+      }
+      .philosophy-statement {
+        font-size: 24px;
+      }
+      .logo {
+        width: 140px;
+        height: 140px;
+      }
+      .cards-grid {
+        gap: 28px;
+      }
+      .card {
+        padding: 28px 24px;
+      }
+      .card h3 {
+        font-size: 24px;
+      }
+      .card-icon .icon-badge {
+        width: 70px;
+        height: 70px;
+        font-size: 48px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      h1 {
+        font-size: 34px;
+      }
+      .philosophy-statement {
+        font-size: 20px;
+        padding: 6px 24px;
+      }
+      .logo {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .container {
+        padding: 28px 20px 48px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      .play-btn {
+        width: 70px;
+        height: 70px;
+      }
+      .play-btn::after {
+        font-size: 30px;
+      }
+      .card {
+        padding: 24px 20px;
+      }
+      .card h3 {
+        font-size: 22px;
+      }
+      .card p {
+        font-size: 16px;
+      }
+      .card-icon .icon-badge {
+        width: 64px;
+        height: 64px;
+        font-size: 40px;
+      }
+    }
+
+    .fade-in {
+      animation: fadeUp 0.65s ease-out;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container fade-in">
+  <!-- 燕尾脊线条 -->
+  <div class="swallow-tail">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="hero">
+    <div class="logo-wrapper">
+      <div class="logo">
+        <img src="image.png" alt="翔安区新圩第一中心幼儿园" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'fallback-icon\'>🏮</span>';">
+      </div>
+    </div>
+    <h1>翔安区新圩第一中心幼儿园欢迎您</h1>
+    <div class="philosophy-statement">让教育充满情怀</div>
+  </div>
+
+  <!-- 视频区域（懒加载优化） -->
+  <div class="media-section">
+    <div class="video-card">
+      <div class="video-container" id="videoContainer">
+        <video 
+          id="kindergartenVideo"
+          playsinline
+          preload="none"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23E7D8C5'/%3E%3Ccircle cx='640' cy='360' r='80' fill='%23BC5A3C' opacity='0.2'/%3E%3Cpolygon points='620,325 670,360 620,395' fill='%23BC5A3C' opacity='0.5'/%3E%3Ctext x='640' y='500' font-size='28' font-family='serif' text-anchor='middle' fill='%23A56B3A'%3E🏮 新圩一幼 欢喜相招 🏮%3C/text%3E%3C/svg%3E"
+          style="width:100%; display:block;"
+        ></video>
+        <div class="play-overlay" id="playOverlay">
+          <div class="play-btn" id="playButton"></div>
+        </div>
+        <div class="loading-indicator" id="loadingSpinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三卡片：融入闽南元素图标 -->
+  <div class="cards-grid">
+    <!-- 办园宗旨：红砖灯笼 -->
+    <div class="card">
+      <div class="card-icon">
+        <div class="icon-badge">🏮</div>
+      </div>
+      <h3>办园宗旨</h3>
+      <p>彼此映照 欣喜成长</p>
+      <div class="card-footer-line"></div>
+    </div>
+    <!-- 培养目标：闽南祥龙 (龙柱/吉祥) -->
+    <div class="card">
+      <div class="card-icon">
+        <div class="icon-badge">🐉</div>
+      </div>
+      <h3>培养目标</h3>
+      <p>知乡 爱乡 身心和谐发展的新圩一幼娃</p>
+      <div class="card-footer-line"></div>
+    </div>
+    <!-- 园本课程：古卷竹简 代表文化传承 -->
+    <div class="card">
+      <div class="card-icon">
+        <div class="icon-badge">📜</div>
+      </div>
+      <h3>园本课程</h3>
+      <p>新曦乐生活 善渊弘文化</p>
+      <div class="card-footer-line"></div>
+    </div>
+  </div>
+
+  <!-- 闽南装饰：红砖花砖意象 -->
+  <div class="minnan-footer-decoration">
+    <span>🧱</span> <span>🏮</span> <span>🐉</span> <span>🍃</span> <span>🎋</span>
+  </div>
+  <div class="footer">
+    🌾 翔安区新圩第一中心幼儿园 · 红砖古厝里的童年时光 🌾
+  </div>
+</div>
+
+<script>
+  (function() {
+    // 视频懒加载优化：避免微信加载慢，点击播放
+    const video = document.getElementById('kindergartenVideo');
+    const playOverlay = document.getElementById('playOverlay');
+    const playBtn = document.getElementById('playButton');
+    const spinner = document.getElementById('loadingSpinner');
+    const VIDEO_SRC = 'video.mp4';
+    let isLoading = false;
+    let loadAttempted = false;
+    let videoReady = false;
+
+    function hideOverlayAndLoading() {
+      if (playOverlay) playOverlay.style.display = 'none';
+      if (spinner) spinner.style.display = 'none';
+    }
+
+    function showErrorHint() {
+      if (spinner) spinner.style.display = 'none';
+      isLoading = false;
+      if (playBtn) {
+        playBtn.style.opacity = '0.6';
+        setTimeout(() => { if(playBtn) playBtn.style.opacity = '1'; }, 1000);
+      }
+    }
+
+    function loadAndPlay() {
+      if (isLoading) return;
+      if (videoReady && video.readyState >= 2) {
+        video.play().then(() => {
+          hideOverlayAndLoading();
+        }).catch(e => {
+          console.warn('播放失败', e);
+          hideOverlayAndLoading();
+        });
+        return;
+      }
+      if (!loadAttempted) {
+        isLoading = true;
+        loadAttempted = true;
+        if (spinner) spinner.style.display = 'block';
+        video.src = VIDEO_SRC;
+        video.preload = 'auto';
+        video.load();
+
+        const onCanPlay = () => {
+          video.removeEventListener('canplaythrough', onCanPlay);
+          video.removeEventListener('loadeddata', onCanPlay);
+          if (isLoading) {
+            videoReady = true;
+            video.play().then(() => {
+              hideOverlayAndLoading();
+              isLoading = false;
+            }).catch(err => {
+              console.warn('play error', err);
+              isLoading = false;
+              hideOverlayAndLoading();
+            });
+          }
+        };
+        const onError = () => {
+          video.removeEventListener('canplaythrough', onCanPlay);
+          video.removeEventListener('error', onError);
+          isLoading = false;
+          loadAttempted = false;
+          showErrorHint();
+        };
+        video.addEventListener('canplaythrough', onCanPlay, { once: true });
+        video.addEventListener('loadeddata', onCanPlay, { once: true });
+        video.addEventListener('error', onError, { once: true });
+        setTimeout(() => {
+          if (isLoading) onError();
+        }, 10000);
+      } else {
+        if (video.readyState === 0 || video.networkState === 3) {
+          loadAttempted = false;
+          video.src = '';
+          video.load();
+          setTimeout(() => {
+            video.src = VIDEO_SRC;
+            loadAndPlay();
+          }, 50);
+        } else {
+          video.play().then(() => {
+            hideOverlayAndLoading();
+            videoReady = true;
+          }).catch(() => {
+            if (playOverlay) playOverlay.style.display = 'flex';
+          });
+        }
+      }
+    }
+
+    if (playBtn) {
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadAndPlay();
+      });
+    }
+    if (playOverlay) {
+      playOverlay.addEventListener('click', (e) => {
+        if (e.target === playBtn || (playBtn && playBtn.contains(e.target))) return;
+        loadAndPlay();
+      });
+    }
+    video.addEventListener('play', () => {
+      if (playOverlay) playOverlay.style.display = 'none';
+      if (spinner) spinner.style.display = 'none';
+      isLoading = false;
+      videoReady = true;
+    });
+    // 清除预加载
+    const sources = video.querySelectorAll('source');
+    sources.forEach(s => s.remove());
+    if (!video.getAttribute('src')) {
+      video.removeAttribute('src');
+      video.load();
+    }
+    video.preload = 'none';
+  })();
+</script>
+</body>
+</html>
